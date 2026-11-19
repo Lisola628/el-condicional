@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El condicional &middot; SPAN 2102</title>
+<style>
+:root{
+  --ink:#14213D; --blue:#2A6F97; --blue-pale:#F2F8FB; --blue-line:#C9D6E0;
+  --green:#4F7A2E; --green-pale:#F4F7F0; --green-line:#D5E0C8;
+  --gold-pale:#FFF8E6; --gold-line:#E8D9A8; --muted:#4A5A6A; --paper:#FFFFFF;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#EEF2F5;color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  line-height:1.65;font-size:16px;}
+.wrap{max-width:820px;margin:0 auto;padding:28px 20px 60px;background:var(--paper);}
+header.hero{border-left:6px solid var(--blue);padding:18px 22px;background:var(--blue-pale);margin-bottom:22px;border-radius:0 6px 6px 0;}
+header.hero h1{margin:0 0 6px;font-size:27px;line-height:1.25;}
+header.hero .meta{margin:0;font-size:15px;color:var(--blue);font-weight:600;}
+header.hero .hello{margin:12px 0 0;font-size:15px;color:var(--muted);}
+h2.sec{font-size:15px;margin:0 0 8px;font-weight:700;}
+.box-gold{padding:12px 16px;background:var(--gold-pale);border:1px solid var(--gold-line);border-radius:6px;font-size:15px;margin:0 0 30px;}
+.box-blue{padding:14px 16px;background:var(--blue-pale);border-left:4px solid var(--blue);border-radius:0 6px 6px 0;margin:0;}
+.box-green{padding:14px 16px;background:var(--green-pale);border:1px solid var(--green-line);border-radius:6px;margin:0;}
+.box-warn{padding:14px 16px;background:var(--gold-pale);border:1px solid var(--gold-line);border-radius:6px;margin:0;}
+.step{margin-bottom:34px;padding-bottom:4px;}
+.step .tag{margin:0 0 4px;font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--green);font-weight:700;}
+.step h3{margin:0 0 6px;font-size:20px;}
+.how{margin:0 0 12px;font-size:15px;color:var(--muted);font-style:italic;}
+table{width:100%;border-collapse:collapse;font-size:15px;margin:0 0 14px;}
+th{border:1px solid var(--blue-line);background:#EDF3F7;padding:9px;text-align:left;}
+td{border:1px solid var(--blue-line);padding:6px 9px;vertical-align:top;}
+ol,ul{margin:0 0 14px;padding-left:24px;}
+li{margin-bottom:7px;}
+.es{font-size:16px;}
+footer{border-top:2px solid var(--blue);padding-top:16px;margin-top:10px;font-size:14.5px;color:var(--muted);}
+.pill{display:inline-block;background:#E7EFF5;color:var(--blue);border-radius:20px;padding:2px 11px;font-size:13px;font-weight:600;}
+
+/* ---- campos para escribir ---- */
+input.f{font:inherit;color:var(--ink);background:#FFFDF5;border:none;border-bottom:2px solid var(--gold-line);
+  padding:2px 6px;min-width:120px;width:170px;border-radius:3px 3px 0 0;}
+input.f:focus{outline:none;background:#FFF6D9;border-bottom-color:var(--blue);}
+input.f.wide{width:100%;}
+td input.f{width:100%;min-width:0;background:transparent;border-bottom:1px dashed var(--blue-line);}
+td input.f:focus{background:#FFF6D9;border-bottom-style:solid;border-bottom-color:var(--blue);}
+textarea.f{font:inherit;color:var(--ink);background:#FFFDF5;border:1px solid var(--gold-line);border-radius:6px;
+  width:100%;padding:9px 11px;min-height:78px;resize:vertical;display:block;margin:6px 0 0;}
+textarea.f:focus{outline:none;background:#FFF6D9;border-color:var(--blue);}
+.answer-print{display:none;white-space:pre-wrap;border-bottom:1px solid #999;min-height:1.4em;padding:2px 0;}
+
+/* ---- barra de herramientas ---- */
+.toolbar{position:sticky;top:0;z-index:10;background:#fff;border:1px solid var(--blue-line);border-radius:8px;
+  padding:10px 12px;margin:0 0 24px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+.toolbar button{font:inherit;font-size:14.5px;cursor:pointer;border:1px solid var(--blue-line);background:#F7FAFC;
+  color:var(--ink);border-radius:6px;padding:7px 13px;}
+.toolbar button:hover{background:var(--blue-pale);border-color:var(--blue);}
+.toolbar button.primary{background:var(--blue);border-color:var(--blue);color:#fff;}
+.toolbar button.primary:hover{background:#215B7D;}
+.toolbar .status{font-size:13.5px;color:var(--muted);margin-left:auto;}
+.namebar{margin:0 0 22px;font-size:15px;}
+.namebar label{font-weight:600;margin-right:8px;}
+
+@media print{
+  body{background:#fff;font-size:11.5pt;}
+  .wrap{max-width:none;padding:0;}
+  .step{page-break-inside:avoid;}
+  .toolbar{display:none;}
+  input.f{background:transparent;border-bottom:1px solid #666;}
+  textarea.f{display:none;}
+  .answer-print{display:block;}
+}
+</style>
+</head>
+<body data-page="04-viernes-el-condicional">
+<div class="wrap">
+
+<header class="hero">
+  <p class="meta">Friday, November 20 &middot; Cap&iacute;tulo 18, Gram&aacute;tica 49 &middot; pp. 546-548</p>
+  <h1>El condicional</h1>
+  <p class="hello">Today&rsquo;s tense is the Spanish for <em>would</em>: what you <em>would</em> do, what someone said they <em>would</em> do. The good news is that there is almost nothing new to memorize. You take the stems you learned for the future in Cap&iacute;tulo 17 and add endings you have known since the imperfect: <em>-&iacute;a, -&iacute;as, -&iacute;a&hellip;</em></p>
+</header>
+
+<div class="toolbar" role="region" aria-label="Herramientas">
+  <button type="button" id="btn-print" class="primary">Imprimir / Guardar en PDF</button>
+  <button type="button" id="btn-download">Descargar mis respuestas</button>
+  <button type="button" id="btn-clear">Borrar todo</button>
+  <span class="status" id="status" aria-live="polite"></span>
+</div>
+<p class="namebar"><label for="student-name">Nombre:</label><input class="f wide" id="student-name" data-k="nombre" style="max-width:320px" autocomplete="name"></p>
+
+<p class="box-gold"><strong>How this page works.</strong> Type your answers straight into it. Everything saves automatically <em>in this browser on this device</em>; it is not sent to me and it is not stored online. For a permanent copy, use <strong>Imprimir / Guardar en PDF</strong> or <strong>Descargar mis respuestas</strong> before you close.</p>
+
+<h2 class="sec">Today you will be able to&hellip;</h2>
+<ul>
+<li>Rebuild the future stems from Cap&iacute;tulo 17 and use them to form the conditional.</li>
+<li>Say what you <em>would</em> do: <span class="es"><em>votar&iacute;a, har&iacute;a, dir&iacute;a, habr&iacute;a&hellip;</em></span></li>
+<li>Describe an ideal world with the vocabulary of Cap&iacute;tulo 18.</li>
+<li>Report what someone said they would do: <span class="es"><em>Dijo que votar&iacute;a.</em></span></li>
+</ul>
+
+<p class="box-gold"><strong>Bring to class:</strong> your book (pp. 546-548) and one index card.</p>
+
+<section class="step">
+  <p class="tag">Paso 1 &middot; 5 min</p>
+  <h3>Repaso: el futuro</h3>
+  <p class="how">On your own, fill in <strong>only the first empty column</strong> (futuro). Then compare with a partner. Leave the other two columns for Paso 2.</p>
+  <table>
+    <tr><th style="width:22%">Infinitivo</th><th style="width:26%">Futuro: yo&hellip;</th><th style="width:26%">Condicional: yo&hellip;</th><th>Condicional: nosotros&hellip;</th></tr>
+    <tr><td class="es">votar</td><td><input class="f"></td><td><input class="f"></td><td><input class="f"></td></tr>
+    <tr><td class="es">obedecer</td><td><input class="f"></td><td><input class="f"></td><td><input class="f"></td></tr>
+    <tr><td class="es">decir</td><td><input class="f"></td><td><input class="f"></td><td><input class="f"></td></tr>
+    <tr><td class="es">hacer</td><td><input class="f"></td><td><input class="f"></td><td><input class="f"></td></tr>
+    <tr><td class="es">poder</td><td><input class="f"></td><td><input class="f"></td><td><input class="f"></td></tr>
+    <tr><td class="es">tener</td><td><input class="f"></td><td><input class="f"></td><td><input class="f"></td></tr>
+    <tr><td class="es">salir</td><td><input class="f"></td><td><input class="f"></td><td><input class="f"></td></tr>
+    <tr><td class="es">saber</td><td><input class="f"></td><td><input class="f"></td><td><input class="f"></td></tr>
+  </table>
+</section>
+
+<section class="step">
+  <p class="tag">Paso 2 &middot; 8 min</p>
+  <h3>La forma</h3>
+  <p class="how">Read the box together, then go back to the table in Paso 1 and fill in the two conditional columns with a partner.</p>
+  <div class="box-blue" style="margin-bottom:14px">
+    <p style="margin:0 0 8px"><strong>The whole rule in one line:</strong> the <strong>whole infinitive</strong> + <span class="es"><strong>-&iacute;a, -&iacute;as, -&iacute;a, -&iacute;amos, -&iacute;ais, -&iacute;an</strong></span>. One set of endings for <em>-ar, -er</em> and <em>-ir</em> verbs.</p>
+    <p style="margin:0" class="es">votar &rarr; votar<strong>&iacute;a</strong> &middot; obedecer &rarr; obedecer<strong>&iacute;amos</strong> &middot; vivir &rarr; vivir<strong>&iacute;an</strong></p>
+  </div>
+  <p>The verbs that are irregular in the future are irregular here too, with the <strong>same stem</strong>. If you know <span class="es"><em>har&eacute;</em></span>, you already know <span class="es"><em>har&iacute;a</em></span>.</p>
+  <table>
+    <tr><th style="width:34%">Drop the vowel</th><th style="width:33%">Add a <em>d</em></th><th>Their own stem</th></tr>
+    <tr>
+      <td class="es">poder &rarr; <strong>podr</strong>&iacute;a<br>querer &rarr; <strong>querr</strong>&iacute;a<br>saber &rarr; <strong>sabr</strong>&iacute;a<br>haber &rarr; <strong>habr</strong>&iacute;a</td>
+      <td class="es">poner &rarr; <strong>pondr</strong>&iacute;a<br>salir &rarr; <strong>saldr</strong>&iacute;a<br>tener &rarr; <strong>tendr</strong>&iacute;a<br>venir &rarr; <strong>vendr</strong>&iacute;a</td>
+      <td class="es">decir &rarr; <strong>dir</strong>&iacute;a<br>hacer &rarr; <strong>har</strong>&iacute;a</td>
+    </tr>
+  </table>
+  <div class="box-warn">
+    <p style="margin:0 0 8px"><strong>&iexcl;OJO!</strong></p>
+    <p style="margin:0 0 8px">Every form carries a written accent on the <strong>&iacute;</strong>: <span class="es"><em>votar&iacute;a, votar&iacute;amos</em></span>. And <em>yo</em> and <em>usted / &eacute;l / ella</em> share one form, so use the subject pronoun when it is not clear who you mean.</p>
+    <p style="margin:0 0 8px"><span class="es"><strong>Habr&iacute;a</strong></span> = <em>there would be</em>. Like <span class="es"><em>hay</em></span>, it stays singular: <span class="es"><em>No <strong>habr&iacute;a</strong> guerras.</em></span></p>
+    <p style="margin:0">English <em>would</em> has two jobs. When it means <em>used to</em>, Spanish wants the imperfect, not the conditional: <em>Every year we would vote early</em> &rarr; <span class="es"><em>Todos los a&ntilde;os <strong>vot&aacute;bamos</strong> temprano.</em></span></p>
+  </div>
+</section>
+
+<section class="step">
+  <p class="tag">Paso 3 &middot; 8 min</p>
+  <h3>Un mundo ideal</h3>
+  <p class="how">Pairs. Complete the description of an ideal world with the conditional. Then add two ideas of your own with vocabulary from Cap&iacute;tulo 18.</p>
+  <p class="es"><strong>En un mundo ideal&hellip;</strong></p>
+  <ol class="es">
+    <li>todos los ciudadanos <input class="f"> (votar) en las elecciones.</li>
+    <li>no <input class="f"> (haber) guerras ni dictaduras.</li>
+    <li>los pol&iacute;ticos siempre <input class="f"> (decir) la verdad.</li>
+    <li>todas las personas <input class="f"> (tener) los mismos derechos.</li>
+    <li>la prensa <input class="f"> (informar) con libertad.</li>
+    <li>nosotros <input class="f"> (poder) confiar en los medios de comunicaci&oacute;n.</li>
+    <li>los gobiernos <input class="f"> (hacer) m&aacute;s por la paz.</li>
+    <li>nadie <input class="f"> (sufrir) discriminaci&oacute;n.</li>
+  </ol>
+  <div class="box-green">
+    <p style="margin:0 0 4px"><strong>Y ustedes, &iquest;qu&eacute; a&ntilde;adir&iacute;an?</strong> <span style="color:#4A5A6A"><em>Two more ideas for your ideal world.</em></span></p>
+    <p style="margin:0 0 6px" class="es">En nuestro mundo ideal, <input class="f" style="width:70%"></p>
+    <p style="margin:0" class="es">Tambi&eacute;n <input class="f" style="width:80%"></p>
+  </div>
+  <p style="margin-top:12px"><strong>Share out:</strong> each pair reads one of its own ideas. The class votes for the most ideal world.</p>
+</section>
+
+<section class="step">
+  <p class="tag">Paso 4 &middot; 12 min</p>
+  <h3>Presidente o presidenta de LSU por un d&iacute;a</h3>
+  <p class="how">Groups of three, seated. One person asks, one answers in full sentences, one writes the answer in the <em>&eacute;l / ella</em> form. Change roles every two questions.</p>
+  <div class="box-blue" style="margin-bottom:14px">
+    <p style="margin:0" class="es"><em>Modelo:</em> &mdash;&iquest;Qu&eacute; <strong>cambiar&iacute;a</strong> usted primero? &mdash;<strong>Cambiar&iacute;a</strong> el horario de la biblioteca. &rarr; &laquo;Maya <strong>cambiar&iacute;a</strong> el horario de la biblioteca&raquo;.</p>
+  </div>
+  <table>
+    <tr><th style="width:46%">Pregunta</th><th>Mi compa&ntilde;ero/a&hellip;</th></tr>
+    <tr><td class="es">1. &iquest;Qu&eacute; cambiar&iacute;a usted primero en LSU?</td><td><input class="f"></td></tr>
+    <tr><td class="es">2. &iquest;D&oacute;nde pondr&iacute;a m&aacute;s estacionamiento?</td><td><input class="f"></td></tr>
+    <tr><td class="es">3. &iquest;Qu&eacute; har&iacute;a con el precio de los libros?</td><td><input class="f"></td></tr>
+    <tr><td class="es">4. &iquest;Habr&iacute;a clases los viernes? &iquest;Por qu&eacute;?</td><td><input class="f"></td></tr>
+    <tr><td class="es">5. &iquest;A qui&eacute;n invitar&iacute;a a dar un discurso en el campus?</td><td><input class="f"></td></tr>
+    <tr><td class="es">6. &iquest;Qu&eacute; les dir&iacute;a a los estudiantes en su primer discurso?</td><td><input class="f"></td></tr>
+  </table>
+  <p style="margin-top:12px"><strong>Share out:</strong> tell the class the best idea you heard in your group. <span class="es"><em>&laquo;En nuestro grupo, Daniel pondr&iacute;a&hellip;&raquo;</em></span></p>
+</section>
+
+<section class="step">
+  <p class="tag">Paso 5 &middot; 8 min</p>
+  <h3>Promesas de campa&ntilde;a: &iquest;qu&eacute; dijo?</h3>
+  <p class="how">Pairs. A candidate makes promises in the future. A reporter tells the public what the candidate said. Do the first four together, then write your own.</p>
+  <div class="box-blue" style="margin-bottom:14px">
+    <p style="margin:0 0 6px">When you report what someone said about the future, the future steps back to the conditional.</p>
+    <p style="margin:0" class="es">La candidata: &laquo;<strong>Bajar&eacute;</strong> los impuestos&raquo;. &rarr; La candidata dijo que <strong>bajar&iacute;a</strong> los impuestos.</p>
+  </div>
+  <ol class="es">
+    <li>El candidato: &laquo;Proteger&eacute; los derechos de todos los ciudadanos&raquo;.<br>El candidato dijo que <input class="f" style="width:60%"></li>
+    <li>La gobernadora: &laquo;Habr&aacute; m&aacute;s empleos el pr&oacute;ximo a&ntilde;o&raquo;.<br>La gobernadora dijo que <input class="f" style="width:60%"></li>
+    <li>Los pol&iacute;ticos: &laquo;Diremos siempre la verdad&raquo;.<br>Los pol&iacute;ticos prometieron que <input class="f" style="width:60%"></li>
+    <li>La reportera: &laquo;Los trabajadores saldr&aacute;n a la calle y har&aacute;n una huelga&raquo;.<br>La reportera inform&oacute; que <input class="f" style="width:60%"></li>
+  </ol>
+  <div class="box-green">
+    <p style="margin:0 0 4px"><strong>Ahora ustedes.</strong> <span style="color:#4A5A6A"><em>You are running for LSU Student Government. Write one promise in the future. Your partner reports it to another pair.</em></span></p>
+    <p style="margin:0 0 6px" class="es">Mi promesa: <input class="f" style="width:78%"></p>
+    <p style="margin:0" class="es">Mi compa&ntilde;ero/a dijo que <input class="f" style="width:66%"></p>
+  </div>
+</section>
+
+<section class="step">
+  <p class="tag">Si queda tiempo</p>
+  <h3>Con cortes&iacute;a</h3>
+  <p class="how">The conditional also softens what you say, exactly like <em>would</em> and <em>could</em> in English. Make each sentence more polite.</p>
+  <ol class="es">
+    <li>Quiero hablar con la reportera. &rarr; Me <input class="f"> (gustar) hablar con la reportera.</li>
+    <li>&iquest;Puede usted repetir la pregunta? &rarr; &iquest;<input class="f"> (poder) usted repetir la pregunta?</li>
+    <li>Usted debe votar. &rarr; Usted <input class="f"> (deber) votar.</li>
+    <li>Quiero hacer una pregunta. &rarr; <input class="f"> (querer) hacer una pregunta.</li>
+  </ol>
+  <div class="box-warn">
+    <p style="margin:0"><strong>&iexcl;OJO! The exception is <em>querer</em>.</strong> To ask politely, Spanish uses the past subjunctive you learned this week, not the conditional: <span class="es"><em>Quiero un caf&eacute;.</em> &rarr; <em><strong>Quisiera</strong> un caf&eacute;.</em></span> That is the form you need in number 4.</p>
+  </div>
+</section>
+
+<section class="step">
+  <p class="tag">Paso 6 &middot; 4 min</p>
+  <h3>Boleto de salida</h3>
+  <p class="how">Index card, with your name. Draft it here first if you like.</p>
+  <ol>
+    <li><span class="es">Una oraci&oacute;n original: <em>En un mundo ideal&hellip;</em></span><br><textarea class="f" placeholder=""></textarea></li>
+    <li><span class="es">Ana: &laquo;Votar&eacute; en las pr&oacute;ximas elecciones&raquo;. &rarr; <em>Ana dijo que&hellip;</em></span><br><textarea class="f" placeholder=""></textarea></li>
+    <li>In English or Spanish: which two things that you already knew combine to make the conditional?<br><textarea class="f" placeholder=""></textarea></li>
+  </ol>
+</section>
+
+<footer>
+  <p style="margin:0 0 6px"><span class="pill">Tarea</span> <strong>For Monday, November 23:</strong> Connect &middot; read pp. 546-548.</p>
+  <p style="margin:0">Monday&rsquo;s class is a recorded lesson. Watch it on Moodle on your own time. &iexcl;Que tengan un buen fin de semana!</p>
+</footer>
+
+</div>
+<script>
+(function(){
+  var KEY = "span2102:" + (document.body.dataset.page || location.pathname);
+  var fields = [];
+  var statusEl, saveTimer;
+
+  function init(){
+    statusEl = document.getElementById("status");
+    fields = Array.prototype.slice.call(document.querySelectorAll(".f"));
+    fields.forEach(function(el, i){
+      if(!el.dataset.k) el.dataset.k = "q" + i;
+      if(!el.getAttribute("aria-label")) el.setAttribute("aria-label", "Respuesta " + (i+1));
+      el.addEventListener("input", queueSave);
+    });
+    restore();
+    document.getElementById("btn-print").addEventListener("click", function(){ window.print(); });
+    document.getElementById("btn-download").addEventListener("click", download);
+    document.getElementById("btn-clear").addEventListener("click", clearAll);
+    window.addEventListener("beforeprint", mirrorForPrint);
+  }
+
+  function store(){
+    try{ return window.localStorage; }catch(e){ return null; }
+  }
+
+  function queueSave(){
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(save, 400);
+  }
+
+  function save(){
+    var s = store();
+    if(!s){ say("Este navegador no guarda; use Descargar o Imprimir."); return; }
+    var data = {};
+    fields.forEach(function(el){ if(el.value) data[el.dataset.k] = el.value; });
+    try{
+      s.setItem(KEY, JSON.stringify(data));
+      var t = new Date();
+      say("Guardado a las " + t.toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"}));
+    }catch(e){
+      say("No se pudo guardar. Descargue sus respuestas.");
+    }
+  }
+
+  function restore(){
+    var s = store();
+    if(!s){ say("Este navegador no guarda automáticamente."); return; }
+    var raw;
+    try{ raw = s.getItem(KEY); }catch(e){ raw = null; }
+    if(!raw){ say("Sus respuestas se guardan en este navegador."); return; }
+    try{
+      var data = JSON.parse(raw);
+      fields.forEach(function(el){ if(data[el.dataset.k]) el.value = data[el.dataset.k]; });
+      say("Recuperamos lo que escribió antes.");
+    }catch(e){ say("Sus respuestas se guardan en este navegador."); }
+  }
+
+  function clearAll(){
+    fields.forEach(function(el){ el.value = ""; });
+    var s = store();
+    if(s){ try{ s.removeItem(KEY); }catch(e){} }
+    say("Todo borrado.");
+  }
+
+  function mirrorForPrint(){
+    document.querySelectorAll("textarea.f").forEach(function(ta){
+      var box = ta.nextElementSibling;
+      if(!box || !box.classList.contains("answer-print")){
+        box = document.createElement("div");
+        box.className = "answer-print";
+        ta.parentNode.insertBefore(box, ta.nextSibling);
+      }
+      box.textContent = ta.value;
+    });
+  }
+
+  function download(){
+    var name = (document.getElementById("student-name") || {}).value || "";
+    var lines = [];
+    lines.push(document.title);
+    if(name) lines.push("Nombre: " + name);
+    lines.push("Fecha de descarga: " + new Date().toLocaleString());
+    lines.push("");
+    var current = "";
+    document.querySelectorAll("h3, .f").forEach(function(el){
+      if(el.tagName === "H3"){ current = el.textContent.trim(); lines.push(""); lines.push("== " + current + " =="); }
+      else if(el.value){ lines.push("  " + (el.dataset.q || el.dataset.k) + ": " + el.value); }
+    });
+    var blob = new Blob([lines.join("\n")], {type:"text/plain;charset=utf-8"});
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = (name ? name.replace(/[^\w\-]+/g,"_") + "-" : "") + (document.body.dataset.page || "respuestas") + ".txt";
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
+    say("Archivo descargado.");
+  }
+
+  function say(msg){ if(statusEl) statusEl.textContent = msg; }
+
+  if(document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+})();
+</script>
+</body>
+</html>
